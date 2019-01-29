@@ -16,8 +16,8 @@ class ToDoForm extends React.Component {
   render() {
     return (
       <div>
-        {this.props.todos.map(todo => {
-          return <p>{todo.task}</p>
+        {this.props.todos.map((todo, index) => {
+          return <p key={index}>{todo.task}</p>
         })}
         <form className="form-container">
             <input type="text" name="task" value={this.state.task} onChange={this.handleChanges} />
