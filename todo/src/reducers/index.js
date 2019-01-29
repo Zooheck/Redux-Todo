@@ -16,7 +16,12 @@ const initialState = [
             )
         case TOGGLE_COMPLETED:
             return (  
-                2
+                state.map((task, index) => {
+                    if (action.payload === index) {
+                        return {...task, completed: !task.completed}
+                    }
+                    return task
+                })
             )
           default:
             return state
