@@ -13,13 +13,17 @@ class ToDoForm extends React.Component {
         [name]: value
       })
     }
+    addTodo = e => {
+      e.preventDefault()
+      this.props.addTodo(this.state)
+    }
   render() {
     return (
       <div>
         {this.props.todos.map((todo, index) => {
           return <p key={index}>{todo.task}</p>
         })}
-        <form className="form-container">
+        <form className="form-container" onSubmit={this.addTodo}>
             <input type="text" name="task" value={this.state.task} onChange={this.handleChanges} />
         </form>
       </div>

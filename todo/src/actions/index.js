@@ -7,9 +7,9 @@ export const addTodo = (todo) => {
     }
 }
 
-export const toggleCompleted = () => {
+export const toggleCompleted = (index) => {
     return {
         type: TOGGLE_COMPLETED,
-        payload: null
+        payload: index
     }
 }

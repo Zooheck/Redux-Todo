@@ -15,8 +15,8 @@ const initialState = [
                 action.payload]
             )
         case TOGGLE_COMPLETED:
-            return (
-                'e'
+            return (  
+                2
             )
           default:
             return state
