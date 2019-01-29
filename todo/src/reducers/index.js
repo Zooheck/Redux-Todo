@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_COMPLETED } from '../actions/types'
+import { ADD_TODO, TOGGLE_COMPLETED, REMOVE_COMPLETED } from '../actions/types'
 
 const initialState = [
     { task: 'finish building ToDo App', completed: false},
@@ -23,6 +23,10 @@ const initialState = [
                     return task
                 })
             )
+        case REMOVE_COMPLETED:
+                return (
+                    state.filter(task => task.completed === false)
+                )
           default:
             return state
       }

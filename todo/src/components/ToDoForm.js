@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { addTodo, toggleCompleted } from '../actions/index'
+import { addTodo, toggleCompleted, removeCompleted } from '../actions/index'
 
 import './todo-form.css'
 
@@ -24,6 +24,10 @@ class ToDoForm extends React.Component {
       e.preventDefault()
       this.props.toggleCompleted(index)
     }
+    removeCompleted = (e) => {
+      e.preventDefault()
+      this.props.removeCompleted()
+    }
   render() {
     return (
       <div>
@@ -33,6 +37,7 @@ class ToDoForm extends React.Component {
         <form className="form-container" onSubmit={this.addTodo}>
             <input type="text" name="task" value={this.state.task} onChange={this.handleChanges} />
         </form>
+        <button onClick={this.removeCompleted}>Remove Completed Tasks</button>
       </div>
   )
 }
@@ -46,4 +51,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { addTodo, toggleCompleted })(ToDoForm)
+export default connect(mapStateToProps, { addTodo, toggleCompleted, removeCompleted })(ToDoForm)
