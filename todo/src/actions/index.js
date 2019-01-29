@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_COMPLETED, REMOVE_COMPLETED } from './types'
+import { ADD_TODO, TOGGLE_COMPLETED, REMOVE_COMPLETED, DELETE_TASK } from './types'
 
 export const addTodo = (todo) => {
     return {
@@ -17,5 +17,12 @@ export const toggleCompleted = (index) => {
 export const removeCompleted = () => {
     return {
         type: REMOVE_COMPLETED
+    }
+}
+
+export const deleteTask = (index) => {
+    return {
+        type: DELETE_TASK,
+        payload: index
     }
 }

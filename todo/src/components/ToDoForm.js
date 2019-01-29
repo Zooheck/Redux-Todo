@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { addTodo, toggleCompleted, removeCompleted } from '../actions/index'
+import { addTodo, toggleCompleted, removeCompleted, deleteTask } from '../actions/index'
 
 import './todo-form.css'
 
@@ -28,16 +28,27 @@ class ToDoForm extends React.Component {
       e.preventDefault()
       this.props.removeCompleted()
     }
+    deleteTask = (e, index) => {
+      e.preventDefault()
+      this.props.deleteTask(index)
+    }
   render() {
     return (
       <div>
         {this.props.todos.map((todo, index) => {
-          return <p key={index} onClick={e => this.toggleCompleted(e, index)} className={todo.completed ? 'completed' : null}>{todo.task}</p>
+          return (
+            <div className="todo-item">
+              <p key={index} onClick={e => this.toggleCompleted(e, index)} className={todo.completed ? 'completed' : null}>{todo.task}</p>
+              <button onClick={e => this.deleteTask(e, index)}>Delete This Task</button>
+            </div>
+          )
         })}
-        <form className="form-container" onSubmit={this.addTodo}>
+        <form className="form-container">
             <input type="text" name="task" value={this.state.task} onChange={this.handleChanges} />
+            <button type="submit" onClick={this.addTodo}>Add New Task</button>
+            <button onClick={this.removeCompleted}>Remove Completed Tasks</button>
         </form>
-        <button onClick={this.removeCompleted}>Remove Completed Tasks</button>
+        
       </div>
   )
 }
@@ -51,4 +62,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { addTodo, toggleCompleted, removeCompleted })(ToDoForm)
+export default connect(mapStateToProps, { addTodo, toggleCompleted, removeCompleted, deleteTask })(ToDoForm)

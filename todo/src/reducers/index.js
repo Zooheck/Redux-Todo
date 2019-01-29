@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_COMPLETED, REMOVE_COMPLETED } from '../actions/types'
+import { ADD_TODO, TOGGLE_COMPLETED, REMOVE_COMPLETED, DELETE_TASK } from '../actions/types'
 
 const initialState = [
     { task: 'finish building ToDo App', completed: false},
@@ -26,6 +26,13 @@ const initialState = [
         case REMOVE_COMPLETED:
                 return (
                     state.filter(task => task.completed === false)
+                )
+        case DELETE_TASK:
+                    console.log(action.payload)
+                return (
+                    state.filter(task => {
+                        return task !== state[action.payload]
+                    })
                 )
           default:
             return state
