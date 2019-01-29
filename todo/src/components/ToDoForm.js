@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { addTodo } from '../actions/index'
-class ToDoList extends React.Component {
+class ToDoForm extends React.Component {
     state = {
       task: '',
-      id: 0,
       completed: false
     }
     handleChanges = e => {
@@ -16,12 +15,24 @@ class ToDoList extends React.Component {
     }
   render() {
     return (
+      <div>
+        {this.props.todos.map(todo => {
+          return <p>{todo.task}</p>
+        })}
         <form className="form-container">
             <input type="text" name="task" value={this.state.task} onChange={this.handleChanges} />
         </form>
+      </div>
   )
 }
 }
 
 
-export default ToDoList
+const mapStateToProps = (state) => {
+  return {
+    todos: state
+  }
+}
+
+
+export default connect(mapStateToProps, { addTodo })(ToDoForm)
