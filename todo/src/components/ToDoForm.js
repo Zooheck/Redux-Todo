@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { addTodo, toggleCompleted } from '../actions/index'
+
+import './todo-form.css'
+
 class ToDoForm extends React.Component {
     state = {
       task: '',
@@ -25,7 +28,7 @@ class ToDoForm extends React.Component {
     return (
       <div>
         {this.props.todos.map((todo, index) => {
-          return <p key={index} onClick={e => this.toggleCompleted(e, index)}>{todo.task}</p>
+          return <p key={index} onClick={e => this.toggleCompleted(e, index)} className={todo.completed ? 'completed' : null}>{todo.task}</p>
         })}
         <form className="form-container" onSubmit={this.addTodo}>
             <input type="text" name="task" value={this.state.task} onChange={this.handleChanges} />
