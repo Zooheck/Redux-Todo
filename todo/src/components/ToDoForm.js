@@ -7,7 +7,8 @@ import './todo-form.css'
 class ToDoForm extends React.Component {
     state = {
       task: '',
-      completed: false
+      completed: false,
+      id: Date.now()
     }
     handleChanges = e => {
       e.preventDefault()
@@ -19,18 +20,23 @@ class ToDoForm extends React.Component {
     addTodo = e => {
       e.preventDefault()
       this.props.addTodo(this.state)
+      this.setState({
+        task: '',
+        completed: false,
+        id: Date.now()
+      })
     }
-    toggleCompleted = (e, index) => {
+    toggleCompleted = (e, id) => {
       e.preventDefault()
-      this.props.toggleCompleted(index)
+      this.props.toggleCompleted(id)
     }
     removeCompleted = (e) => {
       e.preventDefault()
       this.props.removeCompleted()
     }
-    deleteTask = (e, index) => {
+    deleteTask = (e, id) => {
       e.preventDefault()
-      this.props.deleteTask(index)
+      this.props.deleteTask(id)
     }
   render() {
     return (
@@ -38,8 +44,8 @@ class ToDoForm extends React.Component {
         {this.props.todos.map((todo, index) => {
           return (
             <div className="todo-item">
-              <p key={index} onClick={e => this.toggleCompleted(e, index)} className={todo.completed ? 'completed' : null}>{todo.task}</p>
-              <button onClick={e => this.deleteTask(e, index)}>Delete This Task</button>
+              <p key={todo.id} onClick={e => this.toggleCompleted(e, todo.id)} className={todo.completed ? 'completed' : null}>{todo.task}</p>
+              <button onClick={e => this.deleteTask(e, todo.id)}>Delete This Task</button>
             </div>
           )
         })}

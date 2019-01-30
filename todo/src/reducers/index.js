@@ -1,10 +1,10 @@
 import { ADD_TODO, TOGGLE_COMPLETED, REMOVE_COMPLETED, DELETE_TASK } from '../actions/types'
 
 const initialState = [
-    { task: 'finish building ToDo App', completed: false},
-    { task: 'work out', completed: false },
-    { task: 'pray the rosary', completed: false },
-    { task: 'brush my teeth', completed: false }
+    { task: 'finish building ToDo App', completed: false, id: 0},
+    { task: 'work out', completed: false, id: 1 },
+    { task: 'pray the rosary', completed: false, id: 2 },
+    { task: 'brush my teeth', completed: false, id: 3 }
   ];
 
   const rootReducer =(state = initialState, action) => {
@@ -16,8 +16,8 @@ const initialState = [
             )
         case TOGGLE_COMPLETED:
             return (  
-                state.map((task, index) => {
-                    if (action.payload === index) {
+                state.map(task => {
+                    if (action.payload === task.id) {
                         return {...task, completed: !task.completed}
                     }
                     return task
@@ -31,9 +31,10 @@ const initialState = [
                     console.log(action.payload)
                 return (
                     state.filter(task => {
-                        return task !== state[action.payload]
+                        return task.id !== action.payload
                     })
                 )
+
           default:
             return state
       }

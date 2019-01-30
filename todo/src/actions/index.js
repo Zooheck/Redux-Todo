@@ -7,10 +7,10 @@ export const addTodo = (todo) => {
     }
 }
 
-export const toggleCompleted = (index) => {
+export const toggleCompleted = (id) => {
     return {
         type: TOGGLE_COMPLETED,
-        payload: index
+        payload: id
     }
 }
 
@@ -20,9 +20,9 @@ export const removeCompleted = () => {
     }
 }
 
-export const deleteTask = (index) => {
+export const deleteTask = (id) => {
     return {
         type: DELETE_TASK,
-        payload: index
+        payload: id
     }
 }
