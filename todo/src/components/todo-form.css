@@ -1,0 +1,9 @@
+/* .todo-item {
+    display: flex;
+    flex-direction: row;
+} */
+
+.completed {
+    color: gray;
+    text-decoration: line-through;
+}
